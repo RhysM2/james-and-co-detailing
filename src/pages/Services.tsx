@@ -6,8 +6,8 @@ const Services = () => {
     {
       title: 'Exterior Clean',
       description: 'Thorough exterior wash and hand-dry for a spotless finish.',
-      carPrice: 45,
-      truckPrice: 65,
+      carPrice: 55,
+      truckPrice: 75,
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -24,8 +24,8 @@ const Services = () => {
     {
       title: 'Interior Clean',
       description: 'Deep interior clean, including vacuum and wipe-down.',
-      carPrice: 40,
-      truckPrice: 55,
+      carPrice: 50,
+      truckPrice: 70,
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -35,13 +35,14 @@ const Services = () => {
         'Full vacuum service',
         'All-surface wipe-down',
         'Interior window clean',
+        'Steam cleaning',
       ],
     },
     {
       title: 'Full Valet',
       description: 'Complete interior + exterior valet, best value. Everything your vehicle needs in one comprehensive package.',
-      carPrice: 80,
-      truckPrice: 105,
+      carPrice: 115,
+      truckPrice: 140,
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
