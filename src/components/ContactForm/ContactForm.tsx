@@ -1,6 +1,21 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const ContactForm = () => {
+  const [showSuccess, setShowSuccess] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if URL has ?success=true parameter
+    const params = new URLSearchParams(location.search);
+    if (params.get('success') === 'true') {
+      setShowSuccess(true);
+      // Remove the parameter from URL after showing message
+      window.history.replaceState({}, '', '/contact');
+    }
+  }, [location]);
+
   return (
     <motion.div
       className="max-w-2xl mx-auto"
@@ -8,6 +23,20 @@ const ContactForm = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
+      {/* Success Message */}
+      {showSuccess && (
+        <motion.div
+          role="alert"
+          aria-live="polite"
+          className="bg-green-500/10 border border-green-500 text-green-500 px-6 py-4 rounded-lg text-center font-body mb-6"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h3 className="font-bold text-lg mb-1">Message Sent Successfully!</h3>
+          <p>Thank you for contacting me. I'll get back to you soon.</p>
+        </motion.div>
+      )}
+
       <form
         action="https://api.web3forms.com/submit"
         method="POST"
