@@ -29,7 +29,7 @@ const Home = () => {
         </svg>
       ),
       title: 'Trusted',
-      description: 'Years of experience serving our community with exceptional results every time.',
+      description: 'Committed to serving the community with exceptional results every time.',
     },
     {
       icon: (
@@ -38,7 +38,7 @@ const Home = () => {
         </svg>
       ),
       title: 'Professional',
-      description: 'Skilled technicians dedicated to delivering premium results you can see and feel.',
+      description: 'Skilled professional dedicated to delivering premium results you can see and feel.',
     },
   ];
 
