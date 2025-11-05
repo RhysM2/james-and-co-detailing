@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const captchaRef = useRef<HCaptcha>(null);
+
+  const onHCaptchaChange = (token: string) => {
+    setCaptchaToken(token);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,6 +23,11 @@ const ContactForm = () => {
       const formData = new FormData(e.currentTarget);
       formData.append("access_key", "8d36f865-bd7f-442d-abad-8f82f05c283c");
 
+      // Add hCaptcha token
+      if (captchaToken) {
+        formData.append("h-captcha-response", captchaToken);
+      }
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formData
@@ -26,9 +38,10 @@ const ContactForm = () => {
       if (data.success) {
         setSubmitStatus('success');
         e.currentTarget.reset();
+        setCaptchaToken(null);
         // Reset hCaptcha
-        if (window.hcaptcha) {
-          window.hcaptcha.reset();
+        if (captchaRef.current) {
+          captchaRef.current.resetCaptcha();
         }
       } else {
         setSubmitStatus('error');
@@ -112,13 +125,15 @@ const ContactForm = () => {
         />
       </div>
 
-      {/* hCaptcha */}
+      {/* hCaptcha - React Component */}
       <div className="flex justify-center">
-        <div
-          className="h-captcha"
-          data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
-          data-theme="dark"
-        ></div>
+        <HCaptcha
+          ref={captchaRef}
+          sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+          onVerify={onHCaptchaChange}
+          theme="dark"
+          reCaptchaCompat={false}
+        />
       </div>
 
       {/* Submit Button */}
@@ -161,14 +176,5 @@ const ContactForm = () => {
     </motion.form>
   );
 };
-
-// Type declaration for hcaptcha
-declare global {
-  interface Window {
-    hcaptcha: {
-      reset: () => void;
-    };
-  }
-}
 
 export default ContactForm;
