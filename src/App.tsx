@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Gallery from './pages/Gallery';
@@ -10,6 +11,7 @@ import About from './pages/About';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <a href="#main-content" className="skip-to-main">
         Skip to main content
       </a>

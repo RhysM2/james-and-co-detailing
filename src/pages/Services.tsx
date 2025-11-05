@@ -51,8 +51,6 @@ const Services = () => {
         'All exterior services included',
         'All interior services included',
         'Engine bay cleaning',
-        'Headlight restoration',
-        'Paint protection application',
         'Best value package',
       ],
     },
