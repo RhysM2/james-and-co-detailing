@@ -14,16 +14,6 @@ const ContactForm = () => {
 
     try {
       const formData = new FormData(e.currentTarget);
-
-      // Check if hCaptcha is completed
-      const hCaptchaResponse = formData.get('h-captcha-response');
-      if (!hCaptchaResponse) {
-        setSubmitStatus('error');
-        setErrorMessage('Please complete the captcha verification.');
-        setIsSubmitting(false);
-        return;
-      }
-
       formData.append("access_key", "8d36f865-bd7f-442d-abad-8f82f05c283c");
 
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -122,11 +112,11 @@ const ContactForm = () => {
         />
       </div>
 
-      {/* hCaptcha - Web3Forms zero-config */}
+      {/* hCaptcha */}
       <div className="flex justify-center">
         <div
           className="h-captcha"
-          data-captcha="true"
+          data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
           data-theme="dark"
         ></div>
       </div>
