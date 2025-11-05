@@ -4,14 +4,26 @@ import { motion } from 'framer-motion';
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage('');
 
     try {
       const formData = new FormData(e.currentTarget);
+
+      // Check if hCaptcha is completed
+      const hCaptchaResponse = formData.get('h-captcha-response');
+      if (!hCaptchaResponse) {
+        setSubmitStatus('error');
+        setErrorMessage('Please complete the captcha verification.');
+        setIsSubmitting(false);
+        return;
+      }
+
       formData.append("access_key", "8d36f865-bd7f-442d-abad-8f82f05c283c");
 
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -24,11 +36,19 @@ const ContactForm = () => {
       if (data.success) {
         setSubmitStatus('success');
         e.currentTarget.reset();
+        // Reset hCaptcha
+        if (window.hcaptcha) {
+          window.hcaptcha.reset();
+        }
       } else {
         setSubmitStatus('error');
+        setErrorMessage(data.message || 'Failed to send message. Please try again.');
+        console.error('Web3Forms error:', data);
       }
     } catch (error) {
       setSubmitStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
+      console.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -102,6 +122,15 @@ const ContactForm = () => {
         />
       </div>
 
+      {/* hCaptcha - Web3Forms zero-config */}
+      <div className="flex justify-center">
+        <div
+          className="h-captcha"
+          data-captcha="true"
+          data-theme="dark"
+        ></div>
+      </div>
+
       {/* Submit Button */}
       <motion.button
         type="submit"
@@ -136,11 +165,20 @@ const ContactForm = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          Something went wrong. Please try again or contact me directly.
+          {errorMessage || 'Something went wrong. Please try again or contact me directly.'}
         </motion.div>
       )}
     </motion.form>
   );
 };
+
+// Type declaration for hcaptcha
+declare global {
+  interface Window {
+    hcaptcha: {
+      reset: () => void;
+    };
+  }
+}
 
 export default ContactForm;
