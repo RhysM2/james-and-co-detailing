@@ -9,7 +9,7 @@
 
 This is the proprietary website for James & Co Detailing, a professional car detailing business serving Llanelli and surrounding areas. The site showcases our premium exterior cleaning, interior detailing, and full valet services.
 
-**Live Site:** https://www.jamesdetailing.com
+**Live Site:** https://www.jamescodetailing.com
 
 ## ✨ Features
 
@@ -117,7 +117,7 @@ This site is deployed on Azure Static Web Apps with automatic CI/CD through GitH
 1. Push to `main` branch triggers GitHub Actions workflow
 2. Vite builds the production bundle
 3. Azure Static Web Apps deploys automatically
-4. Site goes live at https://www.jamesdetailing.com
+4. Site goes live at https://www.jamescodetailing.com
 
 **Custom Domain Setup:**
 - Domain configured through Azure Static Web Apps
