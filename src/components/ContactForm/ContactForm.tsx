@@ -23,11 +23,6 @@ const ContactForm = () => {
       const formData = new FormData(e.currentTarget);
       formData.append("access_key", "8d36f865-bd7f-442d-abad-8f82f05c283c");
 
-      // Add hCaptcha token
-      if (captchaToken) {
-        formData.append("h-captcha-response", captchaToken);
-      }
-
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formData
@@ -135,6 +130,11 @@ const ContactForm = () => {
           reCaptchaCompat={false}
         />
       </div>
+
+      {/* Hidden input for hCaptcha token */}
+      {captchaToken && (
+        <input type="hidden" name="h-captcha-response" value={captchaToken} />
+      )}
 
       {/* Submit Button */}
       <motion.button
