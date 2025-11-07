@@ -73,10 +73,10 @@ const Contact = () => {
                 Send me a message
               </p>
               <a
-                href="mailto:Mikejamezz1234@gmail.com"
+                href="mailto:jamescodetailing@gmail.com"
                 className="text-accent hover:text-accent/80 font-body font-medium transition-colors"
               >
-                Mikejamezz1234@gmail.com
+                jamescodetailing@gmail.com
               </a>
             </motion.div>
 

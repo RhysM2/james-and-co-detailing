@@ -126,10 +126,10 @@ const Services = () => {
                 Call: 07759 245099
               </a>
               <a
-                href="mailto:Mikejamezz1234@gmail.com"
+                href="mailto:jamescodetailing@gmail.com"
                 className="bg-accent/10 hover:bg-accent text-text-main hover:text-white border border-accent font-body font-medium py-3 px-6 rounded transition-all duration-300"
               >
-                Email: Mikejamezz1234@gmail.com
+                Email: jamescodetailing@gmail.com
               </a>
             </div>
           </motion.div>

@@ -78,7 +78,7 @@ const Footer = () => {
                 Phone: <a href="tel:07759245099" className="hover:text-accent transition-colors">07759 245099</a>
               </p>
               <p className="text-text-secondary text-sm font-body">
-                Email: <a href="mailto:Mikejamezz1234@gmail.com" className="hover:text-accent transition-colors">Mikejamezz1234@gmail.com</a>
+                Email: <a href="mailto:jamescodetailing@gmail.com" className="hover:text-accent transition-colors">jamescodetailing@gmail.com</a>
               </p>
             </div>
             <div className="flex space-x-4 mt-4">
